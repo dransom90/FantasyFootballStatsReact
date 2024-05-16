@@ -1,5 +1,3 @@
-# React + Vite
-
 # Fantasy Football League Stats Tracker
 
 This is a React project that displays stats from my personal fantasy football league. It allows me to easily track and analyze player and team stats throughout the season.
