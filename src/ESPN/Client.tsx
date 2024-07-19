@@ -1,8 +1,36 @@
-import { Client } from "espn-fantasy-football-api";
-import * as _ from "lodash";
-const myClient = new Client({ leagueId: 1525510 });
+/* import _ from "lodash";
+import { Client } from "espn-fantasy-football-api"; // web development build
+import Team from '../ESPN/Team'
+const myClient = new Client({ leagueId: 1525510 }); */
 
-class Psychic {
+import axios from "axios";
+import { plainToInstance } from "class-transformer";
+import { League } from "./League";
+import { Member } from "./Member";
+import MembersRequest from "./Requests/MembersRequest.tsx";
+
+import { Data } from "./Data";
+
+class Client {
+  static getLeagueTeams(year: string): Member[] {
+    let teams: Member[] = [];
+    let league: League;
+
+    var members = MembersRequest.getMembers(year)
+      .then(function (value) {
+        teams = value;
+      })
+      .finally(() => {
+        return teams;
+      });
+
+    return teams;
+  }
+}
+
+export default Client;
+
+/* class Psychic {
   static filterPosition(boxscorePlayer, position) {
     return (
       boxscorePlayer.position === position ||
@@ -20,7 +48,7 @@ class Psychic {
 
   static analyzeLineup(lineup, score) {
     let bestSum = 0;
-    const bestRoster = [];
+    const bestRoster: [] = [];
     let numChanges = 0;
 
     const bestQB = this.handleNonFlexPosition(lineup, "QB");
@@ -113,15 +141,13 @@ class Psychic {
         return bestLineups;
       });
   }
+
+  static getTeamsAtWeek({ seasonId, scoringPeriodId }) {
+    return myClient.getTeamsAtWeek({
+      seasonId,
+      scoringPeriodId,
+    });
+  }
 }
 
-Psychic.runForWeek({
-  seasonId: 2019,
-  matchupPeriodId: 4,
-  scoringPeriodId: 4,
-}).then((result) => {
-  console.log(result);
-  return result;
-});
-
-export default Psychic;
+export default Psychic; */
