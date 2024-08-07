@@ -16,14 +16,11 @@ class Client {
     let teams: Member[] = [];
     let league: League;
 
-    var members = MembersRequest.getMembers(year)
-      .then(function (value) {
-        teams = value;
-      })
-      .finally(() => {
-        return teams;
-      });
+    //return Promise.resolve(MembersRequest.getMembers(year));
+    //let result: Promise<Member> = await MembersRequest.getMembers(year);
 
+    teams = MembersRequest.getMembers(year);
+    console.log(`teams has ${teams.length} `);
     return teams;
   }
 }

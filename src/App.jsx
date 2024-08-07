@@ -8,7 +8,7 @@ import 'reflect-metadata'
 
 function App() {
 
-  var members = Client.getLeagueTeams('2023');
+  //var members = Client.getLeagueTeams('2023');
   
  /*  const bestLineups = Psychic.runForWeek({ seasonId: 2019, matchupPeriodId: 4, scoringPeriodId: 4 }).then((result) => {
     console.log(result);
@@ -21,14 +21,14 @@ function App() {
   //var parsedJson = JSON.parse(response);
   //console.log(parsedJson)
 
-  console.log(`App: received ${members.length} teams`);
+  //console.log(`App: received ${members.length} teams`);
   return (
     <>
       <div>
         <Title />
       </div>
       <div>
-      <TeamDropdown teams = {members}/>
+      <TeamDropdown />
       </div>
     </>
   )

@@ -9,9 +9,9 @@ function Title() {
           Here you will find pointless stats for our pointless (but way too
           addicting) fantasy game.
         </p>
-        <a href="#" className="btn btn-danger">
+        {/* <a href="#" className="btn btn-danger">
           Go somewhere
-        </a>
+        </a> */}
       </div>
     </div>
   );
