@@ -2,8 +2,7 @@ import './App.css'
 //import Title from './Components/Title'
 import TeamDropdown from './Components/TeamDropdown'
 import Title from './Components/Title';
-//import Psychic from './ESPN/Client'
-import Client from './ESPN/Client'
+import WeekMenu from './Components/WeekMenu'
 import 'reflect-metadata'
 
 function App() {
@@ -28,6 +27,7 @@ function App() {
         <Title />
       </div>
       <div>
+      <WeekMenu />
       <TeamDropdown />
       </div>
     </>
