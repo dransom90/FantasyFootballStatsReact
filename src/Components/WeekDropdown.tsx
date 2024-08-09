@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { Team } from "../ESPN/Requests/TeamRequest";
 
-type TeamProps = {
-  teams: Team[] | undefined;
+type WeekProps = {
+  weeks: string[];
   showDropDown: boolean;
   toggleDropDown: Function;
-  teamSelection: Function;
+  weekSelection: Function;
 };
 
-const TeamDropdown: React.FC<TeamProps> = ({
-  teams,
-  teamSelection,
-}: TeamProps): React.JSX.Element => {
+const WeekDropdown: React.FC<WeekProps> = ({
+  weeks,
+  weekSelection,
+}: WeekProps): React.JSX.Element => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
+
   /**
    * Handle passing the week menu
    * back to the parent component
    * @param The selected week
    */
-  const onClickHandler = (team: Team | undefined): void => {
-    teamSelection(team);
+  const onClickHandler = (week: string): void => {
+    weekSelection(week);
   };
 
   useEffect(() => {
@@ -29,15 +29,15 @@ const TeamDropdown: React.FC<TeamProps> = ({
   return (
     <>
       <div className={showDropDown ? "dropdown" : "dropdown active"}>
-        {teams?.map((team: Team | undefined, index: number): JSX.Element => {
+        {weeks.map((week: string, index: number): JSX.Element => {
           return (
             <p
               key={index}
               onClick={(): void => {
-                onClickHandler(team);
+                onClickHandler(week);
               }}
             >
-              {team?.name}
+              {week}
             </p>
           );
         })}
@@ -45,5 +45,4 @@ const TeamDropdown: React.FC<TeamProps> = ({
     </>
   );
 };
-
-export default TeamDropdown;
+export default WeekDropdown;
