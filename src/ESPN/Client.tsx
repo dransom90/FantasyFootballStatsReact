@@ -1,17 +1,17 @@
-/* import _ from "lodash";
-import { Client } from "espn-fantasy-football-api"; // web development build
-import Team from '../ESPN/Team'
-const myClient = new Client({ leagueId: 1525510 }); */
-
 import axios from "axios";
-import { plainToInstance } from "class-transformer";
 import { League } from "./League";
 import { Member } from "./Member";
 import MembersRequest from "./Requests/MembersRequest.tsx";
+import Boxscore from "./Boxscore.js";
+import _ from "lodash";
 
-import { Data } from "./Data";
+axios.defaults.baseURL =
+  "https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/";
 
 class Client {
+  // constructor(options = {}) {
+  //   this.leagueId = options.leagueId;
+  // }
   static getLeagueTeams(year: string): Member[] {
     let teams: Member[] = [];
     let league: League;
@@ -22,6 +22,27 @@ class Client {
     teams = MembersRequest.getMembers(year);
     console.log(`teams has ${teams.length} `);
     return teams;
+  }
+
+  static getWeekBoxscores({ seasonId, matchupPeriodId, scoringPeriodId }) {
+    return axios
+      .get(
+        `https://lm-api-reads.fantasy.espn.com/apis/v3/games/ffl/seasons/${seasonId}/segments/0/leagues/1525510?view=mMatchup&view=mMatchupScore&scoringPeriodId=${scoringPeriodId}`
+      )
+      .then((response) => {
+        const schedule = _.get(response.data, "schedule");
+        const data = _.filter(schedule, { matchupPeriodId });
+
+        console.log(schedule);
+
+        return _.map(data, (matchup) => {
+          Boxscore.buildFromServer(matchup, {
+            leagueId: 1525510,
+            seasonId,
+            scoringPeriodId,
+          });
+        });
+      });
   }
 }
 
