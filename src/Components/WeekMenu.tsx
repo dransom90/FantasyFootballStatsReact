@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import WeekDropdown from "./WeekDropdown";
 
-const WeekMenu: React.FC = (): React.JSX.Element => {
+type WeekMenuProps = {
+  weekSelection: Function;
+};
+
+const WeekMenu: React.FC<WeekMenuProps> = ({
+  weekSelection,
+}: WeekMenuProps): React.JSX.Element => {
   const [showDropDown, setShowDropDown] = useState<boolean>(false);
   const [selectWeek, setSelectWeek] = useState<string>("");
   const weeks = () => {
@@ -49,17 +55,12 @@ const WeekMenu: React.FC = (): React.JSX.Element => {
    * @param week The selected week
    */
 
-  const weekSelection = (week: string): void => {
-    setSelectWeek(week);
-  };
+  // const weekSelection = (week: string): void => {
+  //   setSelectWeek(week);
+  // };
 
   return (
     <>
-      <div className="announcement">
-        <div>
-          {selectWeek ? `You selected week ${selectWeek} ` : "Select week"}
-        </div>
-      </div>
       <button
         className={showDropDown ? "active" : undefined}
         onClick={(): void => toggleDropDown()}
