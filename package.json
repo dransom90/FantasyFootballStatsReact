@@ -3,6 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "configurations": [
+        {
+            "name": "Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:5173",
+            "webRoot": "${workspaceRoot}/src",
+            "runtimeArgs": ["--disable-web-security"]
+        }
+    ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

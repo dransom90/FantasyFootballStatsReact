@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Client from "espn-fantasy-football-api";
 
 type BestLineupProps = {
   showComponent: boolean;
@@ -23,15 +24,11 @@ const BestLineup: React.FC<BestLineupProps> = ({
 
   if (optimalScore - actualScore <= 10) {
     analysis = "Not bad...";
-  }
-
-  if (optimalScore - actualScore <= 20) {
+  } else if (optimalScore - actualScore <= 20) {
     analysis = "Pay more attention next week.";
-  }
-
-  if (optimalScore - actualScore > 20)
+  } else if (optimalScore - actualScore > 20)
     analysis =
-      "Wow. Wow. You put on a masterclass this week on how not to play this game.";
+      "Wow. You put on a masterclass this week on how not to play this game.";
 
   return (
     <>
