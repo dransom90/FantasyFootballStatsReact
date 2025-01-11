@@ -1,18 +1,7 @@
 {
   "name": "fantasystats",
   "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "configurations": [
-        {
-            "name": "Chrome",
-            "type": "chrome",
-            "request": "launch",
-            "url": "http://localhost:5173",
-            "webRoot": "${workspaceRoot}/src",
-            "runtimeArgs": ["--disable-web-security"]
-        }
-    ],
+  "version": "0.1.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -26,6 +15,7 @@
     "class-transformer": "^0.5.1",
     "connect-cors": "^0.5.6",
     "cors": "^2.8.5",
+    "eslint-config-next": "^15.1.4",
     "espn-fantasy-football-api": "^2.0.0",
     "http-proxy-middleware": "^3.0.0",
     "jquery": "^3.7.1",
@@ -41,7 +31,7 @@
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
-    "eslint": "^9.8.0",
+    "eslint": "^9.18.0",
     "eslint-plugin-react": "^7.35.0",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.9",
