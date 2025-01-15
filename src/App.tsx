@@ -12,6 +12,7 @@ import TeamMenu from "./Components/TeamMenu";
 import Psychic from "./Stats/Psychic";
 import { FallingLines } from "react-loader-spinner";
 import CalculateButton from "./Components/CalculateButton";
+import Tabs from "./Components/Tabs";
 
 type State = {
   team: Team;
@@ -183,7 +184,8 @@ function App() {
       <div>
         <Title />
       </div>
-      {state.showDropdowns === true && (
+      <Tabs />
+      {/* {state.showDropdowns === true && (
         <div>
           {state.team.name
             ? `You are viewing stats for ${state.team.name} `
@@ -213,7 +215,7 @@ function App() {
           onClick={calculateOptimalScore}
           disabled={state.showLoader}
         />
-      </div>
+      </div> */}
     </>
   );
 }
