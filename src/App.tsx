@@ -20,6 +20,7 @@ type State = {
   optimalScore: number;
   showOptimalLineup: boolean;
   showLoader: boolean;
+  showDropdowns: boolean;
 };
 
 const initialState: State = {
@@ -29,6 +30,7 @@ const initialState: State = {
   optimalScore: 0,
   showOptimalLineup: false,
   showLoader: false,
+  showDropdowns: true,
 };
 
 const reducer = (state: State, action: any) => {
@@ -52,6 +54,9 @@ const reducer = (state: State, action: any) => {
     case "showLoader":
       let newShowLoader = action.payload;
       return { ...state, showLoader: newShowLoader };
+    case "showDropdowns":
+      let newShowDropdowns = action.payload;
+      return { ...state, showDropdowns: newShowDropdowns };
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
   }
@@ -110,6 +115,10 @@ function App() {
         payload: true,
       });
       dispatch({
+        type: "showDropdowns",
+        payload: false,
+      });
+      dispatch({
         type: "showLineup",
         payload: true,
       });
@@ -129,6 +138,10 @@ function App() {
         dispatch({
           type: "showLoader",
           payload: false,
+        });
+        dispatch({
+          type: "showDropdowns",
+          payload: true,
         });
         console.log(`result: ${result}`);
         dispatch({
@@ -162,33 +175,35 @@ function App() {
       <div>
         <Title />
       </div>
-      {
+      {state.showDropdowns === true && (
         <div>
           {state.team.name
             ? `You are viewing stats for ${state.team.name} `
             : "Select Team"}
+          {<TeamMenu leagueTeams={data?.teams} teamSelection={teamSelection} />}
         </div>
-      }
+      )}
       <div>
         <FallingLines color="#4fa94d" width="100" visible={state.showLoader} />
-        {state.week ? `You selected week ${state.week} ` : "Select week"}
       </div>
-      <div>
-        <WeekMenu weekSelection={weekSelection} />
-        {<TeamMenu leagueTeams={data?.teams} teamSelection={teamSelection} />}
+      {state.showDropdowns === true && (
         <div>
-          <BestLineup
-            showComponent={state.showOptimalLineup}
-            actualScore={state.actualScore}
-            optimalScore={state.optimalScore}
-          />
+          {state.week ? `You selected week ${state.week} ` : "Select week"}
+          {state.showDropdowns && <WeekMenu weekSelection={weekSelection} />}
         </div>
+      )}
+      <div>
+        <BestLineup
+          showComponent={!state.showLoader}
+          actualScore={state.actualScore}
+          optimalScore={state.optimalScore}
+        />
       </div>
       <div>
         <CalculateButton
           buttonText="Calculate"
           onClick={calculateOptimalScore}
-          disabled={false}
+          disabled={state.showLoader}
         />
       </div>
     </>
