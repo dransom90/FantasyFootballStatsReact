@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Team } from "../ESPN/Requests/TeamRequest";
+import "./styles/Dropdown.css";
 
 type TeamProps = {
   teams: Team[] | undefined;
@@ -28,17 +29,19 @@ const TeamDropdown: React.FC<TeamProps> = ({
 
   return (
     <>
-      <div className={showDropDown ? "dropdown" : "dropdown active"}>
+      <div className={showDropDown ? "dropdown" : "dropdown-active"}>
         {teams?.map((team: Team | undefined, index: number): JSX.Element => {
           return (
-            <p
-              key={index}
-              onClick={(): void => {
-                onClickHandler(team);
-              }}
-            >
-              {team?.name}
-            </p>
+            <div className="dropdown-content">
+              <p
+                key={index}
+                onClick={(): void => {
+                  onClickHandler(team);
+                }}
+              >
+                {team?.name}
+              </p>
+            </div>
           );
         })}
       </div>

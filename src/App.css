@@ -34,8 +34,18 @@
   }
 }
 
-.card {
-  padding: 2em;
+.card-body{
+  background-color: #e52534;
+  border-radius: 6px;
+}
+
+.card-title{
+  color: white;
+}
+
+.card-text{
+  color:black;
+  font-weight: bold;
 }
 
 .read-the-docs {
