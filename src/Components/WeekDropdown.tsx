@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./styles/Dropdown.css";
 
 type WeekProps = {
   weeks: string[];
@@ -28,17 +29,19 @@ const WeekDropdown: React.FC<WeekProps> = ({
 
   return (
     <>
-      <div className={showDropDown ? "dropdown" : "dropdown active"}>
+      <div className={showDropDown ? "dropdown" : "dropdown-active"}>
         {weeks.map((week: string, index: number): JSX.Element => {
           return (
-            <p
-              key={index}
-              onClick={(): void => {
-                onClickHandler(week);
-              }}
-            >
-              {week}
-            </p>
+            <div className="dropdown-content">
+              <p
+                key={index}
+                onClick={(): void => {
+                  onClickHandler(week);
+                }}
+              >
+                {week}
+              </p>
+            </div>
           );
         })}
       </div>
