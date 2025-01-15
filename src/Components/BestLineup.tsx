@@ -20,9 +20,7 @@ const BestLineup: React.FC<BestLineupProps> = ({
   if (optimalScore === actualScore) {
     analysis =
       "You aced your lineup this week. Apparently you're pretty good at this fantasy thing. Or your team sucks and you had no other options.";
-  }
-
-  if (optimalScore - actualScore <= 10) {
+  } else if (optimalScore - actualScore <= 10) {
     analysis = "Not bad...";
   } else if (optimalScore - actualScore <= 20) {
     analysis = "Pay more attention next week.";
@@ -32,8 +30,12 @@ const BestLineup: React.FC<BestLineupProps> = ({
 
   return (
     <>
-      <p>You scored {actualScore} points this week.</p>
-      <p>You could have scored {optimalScore} points this week.</p>
+      <p>
+        You scored <b>{actualScore}</b> points this week.
+      </p>
+      <p>
+        You could have scored <b>{optimalScore}</b> points this week.
+      </p>
       <h3>Analysis</h3>
       <p>{analysis}</p>
     </>
