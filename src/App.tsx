@@ -122,6 +122,10 @@ function App() {
         type: "showLineup",
         payload: true,
       });
+      // dispatch({
+      //   type: "showOptimalLineup",
+      //   payload: false,
+      // });
       let weekResult = Psychic.runForWeek({
         seasonId: 2023,
         matchupPeriodId: state.week,
@@ -152,6 +156,10 @@ function App() {
           type: "updateActualScore",
           payload: result.currentScore,
         });
+        // dispatch({
+        //   type: "showOptimalLineup",
+        //   payload: true,
+        // });
       });
     } else {
       //setShowOptimalLineup(false);
@@ -194,7 +202,7 @@ function App() {
       )}
       <div>
         <BestLineup
-          showComponent={!state.showLoader}
+          showComponent={state.showOptimalLineup}
           actualScore={state.actualScore}
           optimalScore={state.optimalScore}
         />
